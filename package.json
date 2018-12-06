@@ -11,12 +11,18 @@
     "security-check": "nsp check",
     "generate-mock-data": "babel-node buildScripts/generateMockData",
     "prestart-mockapi": "npm run generate-mock-data",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
+    "clean-dist": "rimraf ./dist && mkdir dist",
+    "prebuild": "npm-run-all clean-dist lint",
+    "build": "babel-node buildScripts/build.js",
+    "postbuild": "babel-node buildScripts/distServer.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@types/chalk": "^2.2.0",
+    "angular": "^1.7.5",
+    "jquery": "^3.3.1",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
